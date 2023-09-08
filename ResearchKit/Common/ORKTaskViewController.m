@@ -194,6 +194,13 @@ static NSString *const _ChildNavigationControllerRestorationKey = @"childNavigat
     }
     [_childNavigationController.view setBackgroundColor:UIColor.clearColor];
     
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = [UINavigationBarAppearance new];
+        appearance.backgroundColor = ORKColor(ORKBackgroundColorKey);
+        _childNavigationController.navigationBar.standardAppearance = appearance;
+        _childNavigationController.navigationBar.scrollEdgeAppearance = appearance;
+    }
+    
     [self addChildViewController:_childNavigationController];
     _childNavigationController.view.frame = self.view.frame;
     _childNavigationController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
